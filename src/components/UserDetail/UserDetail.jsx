@@ -39,20 +39,7 @@ const UserDetail = ({updateUser, getAllUsers, deleteUser, uploadImage}) => {
   const navigate = useNavigate()
 
 useEffect(() => {
-  const getSelectedUserOnline = async () => {
-    try {
-      const responseSelected = await axios.get(`${getAllUsers}/${selectedUser._id}`);
-      setSelectedUser(responseSelected.data); // Update selectedUser state
 
-      const responseUser = await axios.get(`${getAllUsers}/${userDetail._id}`);
-      setUserDetail(responseUser.data); // Update userDetail state
-    } catch (error) {
-      console.error('Error fetching user details:', error);
-      // Handle errors as needed, e.g., setting state or showing an error message
-    }
-  };
-
-  getSelectedUserOnline();
 }, []); // Ensure useEffect runs when these dependencies change
 
 
@@ -111,9 +98,21 @@ useEffect(() => {
   };
 
   useEffect(() => {
-    const updatedUser = JSON.parse(localStorage.getItem('selectedUser'))
-    setSelectedUser(updatedUser || {})
-    console.log(selectedUser)
+  const getSelectedUserOnline = async () => {
+    try {
+      const responseSelected = await axios.get(`${getAllUsers}/${selectedUser._id}`);
+      setSelectedUser(responseSelected.data); // Update selectedUser state
+
+      const responseUser = await axios.get(`${getAllUsers}/${userDetail._id}`);
+      setUserDetail(responseUser.data); // Update userDetail state
+    } catch (error) {
+      console.error('Error fetching user details:', error);
+      // Handle errors as needed, e.g., setting state or showing an error message
+    }
+  };
+
+  getSelectedUserOnline();
+
   }, [])
 
   useEffect(() => {
