@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import Auth from './components/Auth/Auth';
-import Navbar from './components/Navbar/Navbar';
-import User from './components/Users/User';
-import UserDetail from './components/UserDetail/UserDetail';
+import Auth from './components/Auth/Auth.jsx';
+import Navbar from './components/Navbar/Navbar.jsx';
+import User from './components/Users/User.jsx';
+import UserDetail from './components/UserDetail/UserDetail.jsx';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import axios from 'axios';
-import PrivateRoute from './components/PrivateRoutes/PrivateRoutes';
+import PrivateRoute from './components/PrivateRoutes/PrivateRoutes.jsx';
 
 const App = () => {
   const [user, setUser] = useState([]);
