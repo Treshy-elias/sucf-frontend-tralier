@@ -102,6 +102,7 @@ useEffect(() => {
     try {
       const responseSelected = await axios.get(`${getAllUsers}/${selectedUser._id}`);
       setSelectedUser(responseSelected.data); // Update selectedUser state
+      console.log('hurry 1')
 
       const responseUser = await axios.get(`${getAllUsers}/${userDetail._id}`);
       setUserDetail(responseUser.data); // Update userDetail state
