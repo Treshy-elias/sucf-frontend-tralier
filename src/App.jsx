@@ -13,12 +13,14 @@ const App = () => {
   const [err, setErr] = useState([]);
   const [position, setPosition] = useState();
   const [userDetail, setUserDetail] = useState()
-  const getAllUsers = 'https://sucf-backend-trailer.vercel.app/users/'
-  const authRegister = 'https://sucf-backend-trailer.vercel.app/auth/register'
-  const authLogin = 'https://sucf-backend-trailer.vercel.app/auth/login'
-  const updateUser = 'https://sucf-backend-trailer.vercel.app/users/update'
-  const deleteUser = 'https://sucf-backend-trailer.vercel.app/users/delete'
-  const uploadImage = 'https://sucf-backend-trailer.vercel.app/upload/image'
+  const apiUrl = 'https://sucf-backend-trailer.vercel.app';
+
+  const getAllUsers = `${apiUrl}/users/`;
+  const authRegister = `${apiUrl}/auth/register`;
+  const authLogin = `${apiUrl}/auth/login`;
+  const updateUser = `${apiUrl}/users/update`;
+  const deleteUser = `${apiUrl}/users/delete`;
+  const uploadImage = `${apiUrl}/upload/image`;
 
   useEffect(() => {
     console.log('Fetching data...');
