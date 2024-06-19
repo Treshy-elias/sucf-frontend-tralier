@@ -15,7 +15,7 @@ const App = () => {
   const [userDetail, setUserDetail] = useState()
   const apiUrl = 'https://sucf-backend-trailer.vercel.app';
 
-  const getAllUsers = `${apiUrl}/users/`;
+  const getAllUsers = `${apiUrl}/users`;
   const authRegister = `${apiUrl}/auth/register`;
   const authLogin = `${apiUrl}/auth/login`;
   const updateUser = `${apiUrl}/users/update`;
