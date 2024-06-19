@@ -116,7 +116,7 @@ useEffect(() => {
 
   getSelectedUserOnline();
 
-  }, [])
+  }, [selectedUser._id, userDetail._id])
 
   useEffect(() => {
     if (selectedUser && userDetail && selectedUser._id === userDetail._id) {
