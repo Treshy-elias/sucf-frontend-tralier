@@ -21,7 +21,7 @@ import {WarningNote, MessageNote} from './WarningNote'
 
 const UserDetail = ({updateUser, getAllUsers, deleteUser, uploadImage}) => {
   const [selectedUser, setSelectedUser] = useState(JSON.parse(localStorage.getItem('selectedUser')) || {})
-  const userDetail = JSON.parse(localStorage.getItem('user')) || {}
+  const [userDetail, setUserDetail] = useState(JSON.parse(localStorage.getItem('user')) || {})
   const [currentUser, setCurrentUser] = useState(false)
   const [makeChange, setMakeChange] = useState(false)
   const [progress, setProgress] = useState(0)
@@ -38,14 +38,23 @@ const UserDetail = ({updateUser, getAllUsers, deleteUser, uploadImage}) => {
   const [imageUrl, setImageUrl] = useState('')
   const navigate = useNavigate()
 
-  const getSelectedUserOnline  = async () => {
-    console.log('hello')
-    const response = await axios.get(`${getAllUsers}/${selectedUser._id}`)
-    console.log(response.data)
-    setSelectedUser(response.data)
-    localStorage.setItem("selectedUser", JSON.stringify(response.data))
-  }
-  getSelectedUserOnline()
+useEffect(() => {
+  const getSelectedUserOnline = async () => {
+    try {
+      const responseSelected = await axios.get(`${getAllUsers}/${selectedUser._id}`);
+      setSelectedUser(responseSelected.data); // Update selectedUser state
+
+      const responseUser = await axios.get(`${getAllUsers}/${userDetail._id}`);
+      setUserDetail(responseUser.data); // Update userDetail state
+    } catch (error) {
+      console.error('Error fetching user details:', error);
+      // Handle errors as needed, e.g., setting state or showing an error message
+    }
+  };
+
+  getSelectedUserOnline();
+}, [selectedUser._id, userDetail._id]); // Ensure useEffect runs when these dependencies change
+
 
   const [data, setData] = useState({
     department: '',
