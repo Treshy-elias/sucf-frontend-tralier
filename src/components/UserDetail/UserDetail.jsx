@@ -42,6 +42,8 @@ const UserDetail = ({updateUser, getAllUsers, deleteUser, uploadImage}) => {
     console.log('hello')
     const response = await axios.get(`${getAllUsers}/${selectedUser._id}`)
     console.log(response.data)
+    setSelectedUser(response.data)
+    localStorage.setItem("selectedUser", JSON.stringify(response.data))
   }
   getSelectedUserOnline()
 
