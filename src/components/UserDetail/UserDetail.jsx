@@ -408,8 +408,8 @@ const handleAddExcosOrAdmin = async (type) => {
             <div className="icons-text">
               <FaHome/>
               {makeChange ? 
-              <input maxLength={108} value={data.homeAdd} style={{width: '100%'}} onChange={handleData} className={`deInput ${makeChange ? '' : 'noEvent'}`} name='homeAdd' placeholder='Home address' type="text" /> 
-              :
+                <input value={data.homeAdd} style={{width: '100%'}} onChange={handleData} className={`deInput ${makeChange ? '' : 'noEvent'}`} name='homeAdd' placeholder='Original Home Address' type="text" />
+                :
                 <div className='div-input'>{data.homeAdd}</div>
               }
             </div>
