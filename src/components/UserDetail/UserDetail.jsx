@@ -1,78 +1,35 @@
-import { useEffect, useState } from 'react'
-import './UserDetail.css'
-import axios from 'axios'
-
-import {FaBookReader, FaTimes, FaUser, FaUserSecret} from 'react-icons/fa'
-import { FaDemocrat, FaTrashCan } from 'react-icons/fa6'
-import { useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react';
+import './UserDetail.css';
+import axios from 'axios';
+import { FaBookReader, FaTimes, FaUser, FaUserSecret } from 'react-icons/fa';
+import { FaDemocrat, FaTrashCan } from 'react-icons/fa6';
+import { useNavigate } from 'react-router-dom';
 import { AiOutlinePhone, AiOutlineCalendar } from 'react-icons/ai';
 import { MdOutlineSchool } from 'react-icons/md';
 import { FaHome, FaTransgenderAlt, FaBuilding, FaChurch } from 'react-icons/fa';
 import { GiBookshelf } from 'react-icons/gi';
-import {WarningNote, MessageNote} from './WarningNote'
+import { WarningNote, MessageNote } from './WarningNote';
 
-
-
-
-
-
-
-
-
-const UserDetail = ({updateUser, getAllUsers, deleteUser, uploadImage}) => {
-
-
-  const [selectedUserId, setSelectedUserId] = useState(JSON.parse(localStorage.getItem('selectedUser')) || {})
-  const [userId, setUserId] = useState(JSON.parse(localStorage.getItem('user')) || {})
-    useEffect(() => {
-  const getSelectedUserOnline = async () => {
-    try {
-      const responseSelected = await axios.get(`${getAllUsers}/${selectedUserId._id}`);
-      console.log('selectedUserId._id' + selectedUserId._id)
-      console.log('hurry 1')
-      setSelectedUserId(responseSelected.data)
-      localStorage.setItem("selectedUser", JSON.stringify(responseSelected.data))
-      console.log(responseSelected.data)
-
-      const responseUser = await axios.get(`${getAllUsers}/${userId._id}`);
-      setUserId(responseUser.data); // Update userDetail state
-      console.log(responseUser.data)
-      localStorage.setItem("user", JSON.stringify(responseUser.data))
-    } catch (error) {
-      console.error('Error fetching user details:', error);
-    const updatedUser = JSON.parse(localStorage.getItem('selectedUser'))
-    const updatedUser2 = JSON.parse(localStorage.getItem('user'))
-    setSelectedUserId(updatedUser || {})
-    setUserId(updatedUser2 || {})
-    
-      // Handle errors as needed, e.g., setting state or showing an error message
-    }
-  };
-
-  getSelectedUserOnline();
-
-  }, [])
-
-  const [selectedUser, setSelectedUser] = useState(selectedUserId || {})
-  const [userDetail, setUserDetail] = useState(userId || {})
-  const [currentUser, setCurrentUser] = useState(false)
-  const [makeChange, setMakeChange] = useState(false)
-  const [progress, setProgress] = useState(0)
-  const [isLoading, setIsLoading] = useState(false)
-  const [info, setInfo] = useState(false)
-  const [infoMessage, setInfoMessage] = useState('')
-  const [adminMenu, setAdminMenu] = useState(false)
-  const [warning, setWarning] = useState(false)
-  const [addExcos, setAddExcos] = useState(false)
-  const [addAdmin, setAddAdmin] = useState(false)
-  const [deleting, setDeleting] = useState(false)
-  const [file, setFile] = useState()
-  const [changeImage, setChangeImage] = useState(false)
-  const [imageUrl, setImageUrl] = useState('')
-  const navigate = useNavigate()
-
-
-
+const UserDetail = ({ updateUser, getAllUsers, deleteUser, uploadImage }) => {
+  const [selectedUserId, setSelectedUserId] = useState(JSON.parse(localStorage.getItem('selectedUser')) || {});
+  const [userId, setUserId] = useState(JSON.parse(localStorage.getItem('user')) || {});
+  const [selectedUser, setSelectedUser] = useState(selectedUserId || {});
+  const [userDetail, setUserDetail] = useState(userId || {});
+  const [currentUser, setCurrentUser] = useState(false);
+  const [makeChange, setMakeChange] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
+  const [info, setInfo] = useState(false);
+  const [infoMessage, setInfoMessage] = useState('');
+  const [adminMenu, setAdminMenu] = useState(false);
+  const [warning, setWarning] = useState(false);
+  const [addExcos, setAddExcos] = useState(false);
+  const [addAdmin, setAddAdmin] = useState(false);
+  const [deleting, setDeleting] = useState(false);
+  const [file, setFile] = useState();
+  const [changeImage, setChangeImage] = useState(false);
+  const [imageUrl, setImageUrl] = useState('');
+  const navigate = useNavigate();
 
   const [data, setData] = useState({
     department: '',
@@ -87,14 +44,37 @@ const UserDetail = ({updateUser, getAllUsers, deleteUser, uploadImage}) => {
   });
 
   const toggleAdminMenu = () => {
-    setAdminMenu(!adminMenu)
-  }
+    setAdminMenu(!adminMenu);
+  };
+
   const toggleImageUpload = () => {
-    if (selectedUser._id == userDetail._id) {
-      setChangeImage(!changeImage)
+    if (selectedUser._id === userDetail._id) {
+      setChangeImage(!changeImage);
     }
-    
-  }
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const responseSelected = await axios.get(`${getAllUsers}/${selectedUserId._id}`);
+        const responseUser = await axios.get(`${getAllUsers}/${userId._id}`);
+        setSelectedUserId(responseSelected.data);
+        setUserId(responseUser.data);
+        setSelectedUser(responseSelected.data);
+        setUserDetail(responseUser.data);
+        localStorage.setItem('selectedUser', JSON.stringify(responseSelected.data));
+        localStorage.setItem('user', JSON.stringify(responseUser.data));
+      } catch (error) {
+        console.error('Error fetching user details:', error);
+        const updatedUser = JSON.parse(localStorage.getItem('selectedUser'));
+        const updatedUser2 = JSON.parse(localStorage.getItem('user'));
+        setSelectedUserId(updatedUser || {});
+        setUserId(updatedUser2 || {});
+      }
+    };
+
+    fetchData();
+  }, [getAllUsers, selectedUserId._id, userId._id]);
 
   useEffect(() => {
     if (selectedUser && userDetail && selectedUser._id === userDetail._id) {
@@ -122,31 +102,24 @@ const UserDetail = ({updateUser, getAllUsers, deleteUser, uploadImage}) => {
         currentUserId: selectedUser._id
       });
     }
-  },[])
+  }, [selectedUser, userDetail]);
+
+  useEffect(() => {
+    if (selectedUser && userDetail && selectedUser._id === userDetail._id) {
+      setCurrentUser(true);
+    } else {
+      setCurrentUser(false);
+    }
+  }, [selectedUser, userDetail]);
 
   const handleData = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
-  // useEffect(() => {
-  //   const updatedUser = JSON.parse(localStorage.getItem('selectedUser'))
-  //   setSelectedUser(updatedUser || {})
-  //   console.log(selectedUser)
-  // }, [])
-
-
-  useEffect(() => {
-    if (selectedUser && userDetail && selectedUser._id === userDetail._id) {
-      setCurrentUser(true)
-    } else {
-      setCurrentUser(false)
-    }
-  }, [selectedUser])
-
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
-      setIsLoading(true)
+      setIsLoading(true);
       const response = await axios.put(`${updateUser}/${userDetail._id}`, data, {
         onDownloadProgress: (progressEvent) => {
           if (progressEvent.total) {
@@ -154,31 +127,25 @@ const UserDetail = ({updateUser, getAllUsers, deleteUser, uploadImage}) => {
             setProgress(percentCompleted);
           }
         },
-      })
-      setIsLoading(false)
-      setInfo(true)
-      setInfoMessage("Update Successful")
-      localStorage.setItem("selectedUser", JSON.stringify(response.data))
+      });
+      setIsLoading(false);
+      setInfo(true);
+      setInfoMessage('Update Successful');
+      localStorage.setItem('selectedUser', JSON.stringify(response.data));
       setTimeout(() => {
-        setInfo(false)
-        
-        window.location.reload()
+        setInfo(false);
+        window.location.reload();
       }, 3000);
       localStorage.setItem('user', JSON.stringify(response.data));
-
-
-     
-
-
     } catch (error) {
-      setInfo(true)
-      setInfoMessage(error.message + '. Check Network connection')
+      setInfo(true);
+      setInfoMessage(error.message + '. Check Network connection');
       setTimeout(() => {
-        setInfo(false)
+        setInfo(false);
       }, 3000);
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
   const handleDeleteUser = async () => {
     const data = {
