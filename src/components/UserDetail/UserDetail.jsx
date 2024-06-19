@@ -31,11 +31,13 @@ const UserDetail = ({updateUser, getAllUsers, deleteUser, uploadImage}) => {
       console.log('selectedUserId._id' + selectedUserId._id)
       console.log('hurry 1')
       setSelectedUserId(responseSelected.data)
+      localStorage.setItem("selectedUser", JSON.stringify(responseSelected.data))
       console.log(responseSelected.data)
 
       const responseUser = await axios.get(`${getAllUsers}/${userId._id}`);
       setUserId(responseUser.data); // Update userDetail state
       console.log(responseUser.data)
+      localStorage.setItem("user", JSON.stringify(responseUser.data))
     } catch (error) {
       console.error('Error fetching user details:', error);
     const updatedUser = JSON.parse(localStorage.getItem('selectedUser'))
