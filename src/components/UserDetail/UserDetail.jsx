@@ -107,6 +107,8 @@ useEffect(() => {
       setUserDetail(responseUser.data); // Update userDetail state
     } catch (error) {
       console.error('Error fetching user details:', error);
+    const updatedUser = JSON.parse(localStorage.getItem('selectedUser'))
+    setSelectedUser(updatedUser || {})
       // Handle errors as needed, e.g., setting state or showing an error message
     }
   };
