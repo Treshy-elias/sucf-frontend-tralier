@@ -70,7 +70,7 @@
     background-color: rgb(219, 210, 210);
     color: rgb(113, 113, 113);
     border-radius: 50%;
-    flex: ;
+
 }
 .icons-text input {
     width: 85%;
@@ -248,7 +248,7 @@
     width: 70%;
     margin-bottom: 5px;
     padding: 20px;
-    background-color: yellow;
+
 
 }
 
@@ -274,6 +274,7 @@
     border: 1px solid gray;
     padding: 6px;
     border-radius: 3px;
+    width: 90%;
 
 }
 .imageUploadBtn {
