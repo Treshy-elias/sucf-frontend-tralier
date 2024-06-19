@@ -19,28 +19,8 @@ import {WarningNote, MessageNote} from './WarningNote'
 
 
 
-const UserDetail = ({updateUser, getAllUsers, deleteUser, uploadImage}) => {
-  const [selectedUser, setSelectedUser] = useState()
-  useEffect(() => {
-    console.log('Fetching data...');
-    let id = JSON.parse(localStorage.getItem('selectedUser'))
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(`${getAllUsers}/${id}`);
-        setSelectedUser(response.data)
-        console.log(response.data)
-        console.log('Data fetched successfully');
-        console.log(response);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  
+const UserDetail = ({updateUser, deleteUser, uploadImage}) => {
+  const [selectedUser, setSelectedUser] = useState(JSON.parse(localStorage.getItem('selectedUser')) || {})
   const userDetail = JSON.parse(localStorage.getItem('user')) || {}
   const [currentUser, setCurrentUser] = useState(false)
   const [makeChange, setMakeChange] = useState(false)
