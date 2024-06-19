@@ -53,7 +53,7 @@ useEffect(() => {
   };
 
   getSelectedUserOnline();
-}, [selectedUser._id, userDetail._id]); // Ensure useEffect runs when these dependencies change
+}, []); // Ensure useEffect runs when these dependencies change
 
 
   const [data, setData] = useState({
