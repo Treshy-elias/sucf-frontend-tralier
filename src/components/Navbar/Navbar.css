@@ -1,0 +1,58 @@
+nav {
+    width: 100%;
+    padding: 10px;
+    box-shadow: 0 0 2px;
+    top: 0;
+    z-index: 50; /* Use integer value for z-index */
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.7); /* Semi-transparent background */
+    backdrop-filter: blur(10px); /* Applies the blur effect */
+    -webkit-backdrop-filter: blur(10px); /* For Safari support */
+
+}
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 30px;
+    font-weight: bold;
+    background: linear-gradient(to left, blue, purple);
+    color: transparent;
+    -webkit-background-clip: text; /* For Chrome, Safari, and Opera */
+    background-clip: text;
+}
+.bars {
+    font-size: 20px;
+    cursor: pointer;
+}
+.ul-list {
+    background-color: rgb(238, 232, 232);
+    width: 100%;
+
+}
+.ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+
+}
+.ul a {
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    background-color: rgb(224, 217, 217);
+    display: flex;
+    justify-content: center;
+    margin: 5px 0;
+    border-radius: 10px;
+    width: 90%;
+
+}
+.ul a:active {
+    background-color: gray;
+}
