@@ -20,8 +20,34 @@ import {WarningNote, MessageNote} from './WarningNote'
 
 
 const UserDetail = ({updateUser, getAllUsers, deleteUser, uploadImage}) => {
-  const [selectedUser, setSelectedUser] = useState(JSON.parse(localStorage.getItem('selectedUser')) || {})
-  const [userDetail, setUserDetail] = useState(JSON.parse(localStorage.getItem('user')) || {})
+
+
+  const [selectedUserId, setSelectedUserId] = useState(JSON.parse(localStorage.getItem('selectedUser')) || {})
+  const [userId, setUserId] = useState(JSON.parse(localStorage.getItem('user')) || {})
+    useEffect(() => {
+  const getSelectedUserOnline = async () => {
+    try {
+      const responseSelected = await axios.get(`${getAllUsers}/${selectedUserId._id}`);
+      console.log('selectedUserId._id' + selectedUserId._id)
+      console.log('hurry 1')
+      setSelectedUserId(responseSelected.data)
+
+      const responseUser = await axios.get(`${getAllUsers}/${userId._id}`);
+      setUserId(responseUser.data); // Update userDetail state
+    } catch (error) {
+      console.error('Error fetching user details:', error);
+    const updatedUser = JSON.parse(localStorage.getItem('selectedUser'))
+    setSelectedUser(updatedUser || {})
+      // Handle errors as needed, e.g., setting state or showing an error message
+    }
+  };
+
+  getSelectedUserOnline();
+
+  }, [])
+
+  const [selectedUser, setSelectedUser] = useState(selectedUserId || {})
+  const [userDetail, setUserDetail] = useState(userId || {})
   const [currentUser, setCurrentUser] = useState(false)
   const [makeChange, setMakeChange] = useState(false)
   const [progress, setProgress] = useState(0)
@@ -38,9 +64,7 @@ const UserDetail = ({updateUser, getAllUsers, deleteUser, uploadImage}) => {
   const [imageUrl, setImageUrl] = useState('')
   const navigate = useNavigate()
 
-useEffect(() => {
 
-}, []); // Ensure useEffect runs when these dependencies change
 
 
   const [data, setData] = useState({
@@ -97,26 +121,12 @@ useEffect(() => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
-  useEffect(() => {
-  const getSelectedUserOnline = async () => {
-    try {
-      const responseSelected = await axios.get(`${getAllUsers}/${selectedUser._id}`);
-      setSelectedUser(responseSelected.data); // Update selectedUser state
-      console.log('hurry 1')
+  // useEffect(() => {
+  //   const updatedUser = JSON.parse(localStorage.getItem('selectedUser'))
+  //   setSelectedUser(updatedUser || {})
+  //   console.log(selectedUser)
+  // }, [])
 
-      const responseUser = await axios.get(`${getAllUsers}/${userDetail._id}`);
-      setUserDetail(responseUser.data); // Update userDetail state
-    } catch (error) {
-      console.error('Error fetching user details:', error);
-    const updatedUser = JSON.parse(localStorage.getItem('selectedUser'))
-    setSelectedUser(updatedUser || {})
-      // Handle errors as needed, e.g., setting state or showing an error message
-    }
-  };
-
-  getSelectedUserOnline();
-
-  }, [selectedUser._id, userDetail._id])
 
   useEffect(() => {
     if (selectedUser && userDetail && selectedUser._id === userDetail._id) {
