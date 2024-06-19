@@ -19,7 +19,7 @@ import {WarningNote, MessageNote} from './WarningNote'
 
 
 
-const UserDetail = ({updateUser, deleteUser, uploadImage}) => {
+const UserDetail = ({updateUser, getAllUsers, deleteUser, uploadImage}) => {
   const [selectedUser, setSelectedUser] = useState(JSON.parse(localStorage.getItem('selectedUser')) || {})
   const userDetail = JSON.parse(localStorage.getItem('user')) || {}
   const [currentUser, setCurrentUser] = useState(false)
@@ -37,6 +37,13 @@ const UserDetail = ({updateUser, deleteUser, uploadImage}) => {
   const [changeImage, setChangeImage] = useState(false)
   const [imageUrl, setImageUrl] = useState('')
   const navigate = useNavigate()
+
+  const getSelectedUserOnline  = async () => {
+    console.log('hello')
+    const response = await axios.get(`${getAllUsers}/${selectedUser._id}`)
+    console.log(response.data)
+  }
+  getSelectedUserOnline()
 
   const [data, setData] = useState({
     department: '',
