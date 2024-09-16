@@ -16,7 +16,7 @@ const App = () => {
   const [position, setPosition] = useState();
   const [userDetail, setUserDetail] = useState();
   const [highLight, setHighLight] = useState('');
-  const apiUrl = 'http://localhost:3000';
+  const apiUrl = 'sucf-backend-trailer.vercel.app';
 
   const [category, setCategory] = useState('all');
   const [searchName, setSearchName] = useState('');
