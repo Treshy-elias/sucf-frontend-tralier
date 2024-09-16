@@ -5,7 +5,7 @@ import axios from 'axios';
 
 const Auth = ({setUserDetail, authRegister, authLogin}) => {
   const [category, setCategory] = useState('');
-  const [signUp, setSignUp] = useState(false);
+  const [signUp, setSignUp] = useState(true);
   const [confirmPass, setConfirmPass] = useState(true);
   const [errMessage, setErrMessage] = useState('');
   const [errDisplay, setErrDisplay] = useState(false);
@@ -138,6 +138,13 @@ const Auth = ({setUserDetail, authRegister, authLogin}) => {
         <div className="header">
           <h1>{signUp ? 'Register' : 'Login'}</h1>
           <p style={{ display: `${errDisplay ? 'block' : 'none'}`, color: 'red' }}>{errMessage}</p>
+          {signUp && (
+            <select value={category} onChange={(e) => { setCategory(e.target.value); handleCategoryClean(); }} name="" id="">
+              <option value="members">Members</option>
+              <option value="excos">Excos</option>
+              <option value="admin">Admin</option>
+            </select>
+          )}
         </div>
         <input value={data.email} onChange={handleData} required placeholder='Enter phone number' name='email' type="text" />
         <input value={data.password} onChange={handleData} required placeholder='Password' name='password' type="password" />
@@ -146,11 +153,14 @@ const Auth = ({setUserDetail, authRegister, authLogin}) => {
             <input value={data.confirmPassword} onChange={handleData} type="password" name='confirmPassword' placeholder='Confirm password' />
             <input value={data.firstname} onChange={handleData} required placeholder='Firstname' name='firstname' type="text" />
             <input value={data.lastname} onChange={handleData} required placeholder='Lastname' name='lastname' type="text" />
-            <div className="">
+            {(category === "excos" || category === "admin") && (
+              <div className="">
               <input type="password" onChange={handleData} name="pin" value={data.pin} required placeholder={`${category} key required`} />
               <br />
+              {category === 'excos' ?  <input type="text" id='role' onChange={handleData} name="role" value={data.role} required placeholder="Enter your role e.g Secretary" />:null}
+             
               </div>
-
+            )}
           </>
         )}
         {!confirmPass && <span className='passCheck' style={{ color: 'red' }}>Passwords do not match</span>}

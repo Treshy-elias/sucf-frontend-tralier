@@ -1,0 +1,51 @@
+.AddUsers {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+
+
+}
+.AddUsers form {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 600px;
+    width: 90%;
+    
+ 
+
+}
+.AddUsers form h3 {
+    font-size: 30px;
+    font-weight: bold;
+    background: linear-gradient(to left, green, purple);
+    color: transparent;
+    -webkit-background-clip: text; /* For Chrome, Safari, and Opera */
+    background-clip: text;
+    display: flex;
+    align-items:center;
+}
+.AddUsers form input[type='text'], .AddUsers form input[type='number'] {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 20px;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid gray;
+}
+.AddUsers form div {
+    width: 90%;
+    display: flex;
+    justify-content: flex-start;
+    padding: 10px;
+    font-size: 20px;
+}
+.AddUsers form button {
+    width: 40%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid gray;
+    font-size: 20px;
+}

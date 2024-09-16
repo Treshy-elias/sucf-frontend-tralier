@@ -2,10 +2,18 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 20px;
+    padding-top: 10px;
     height: 90vh;
     overflow-y: scroll;
     scroll-behavior: smooth;
+    max-width: 650px;
+    justify-self: center;
+    align-self: center;
+
+}
+.userContainer {
+    display: flex;
+    justify-content: center;
 }
 .user::-webkit-scrollbar {
     width: 0;
@@ -20,9 +28,12 @@
     width: 100%;
     height: 100%;
 }
+.link:hover {
+    background-color: rgb(222, 219, 219);
+}
 .img {
-    width: 100px;
-    height: 100px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     background-color: gray;
     background-size: cover;
@@ -34,12 +45,12 @@
     display: flex;
     align-items: center;
     gap: 5px;
-    box-shadow: 0 0 4px;
-    margin-bottom: 10px;
+
+    margin-bottom: 5px;
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: 4px;
+
 }
 .text > :first-child {
     font-size: 20px;
@@ -48,4 +59,107 @@
 .text > :nth-child(2) {
     color: gray;
     font-weight: bold;
+}
+
+.gallery {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    max-width: 600px;
+
+
+}
+.gallery .upper {
+    font-size: 20px;
+    display: flex;
+    margin: 0 10px;
+    justify-content: space-between;
+    align-items: center;
+}
+.gallery h4 {
+    font-size: 25px;
+}
+.gallery .searchInactive {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    align-items: center;
+    animation: slideIn .5s forwards;
+    transition: all 0.3s ease;
+    width: 20px;
+
+}
+.gallery .searchActive {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 0 2px green;
+    padding: 5px;
+    border-radius: 4px;
+    width: 200px;
+    animation: slideOut .5s forwards;
+
+}
+
+.gallery .search input {
+    height: 30px;
+    width: 0;
+    font-size: 16px;
+    transition: width 0.3s ease;
+    overflow: hidden;
+    border: none;
+    outline: none; /* Prevent default focus outline */
+    opacity: 0;
+    
+}
+
+
+.gallery .searchActive input {
+    width: 150px; /* Adjust to your desired width */
+    opacity: 1;
+
+
+
+}
+
+.gallery .searchInactive > :nth-child(2) {
+    cursor: pointer;
+    outline: none; /* Prevent default focus outline */
+}
+
+.gallery .search > :nth-child(2):active {
+    -webkit-tap-highlight-color: transparent;
+}
+
+.gallery .lower {
+    margin: 0 10px;
+    margin-bottom: 10px;
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+}
+.gallery .lower::-webkit-scrollbar {
+    width: 0;
+}
+
+
+.gallery .lower button {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+}
+
+.bottom {
+    display: flex;
+    font-size: 16px;
+    height: 15%;
+    align-items: center;
+    color: green;
+}
+@media (min-width: 650px) {
+    .user {
+        box-shadow: 0 0 5px;
+    }
 }

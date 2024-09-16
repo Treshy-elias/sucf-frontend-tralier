@@ -13,3 +13,8 @@ admin panel {
 }
 
 let the user kn it has been updated
+
+
+add a loading for the submit image btn
+
+log out. remove token from local storage

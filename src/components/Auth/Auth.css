@@ -12,8 +12,9 @@
     width: 90%;
     max-width: 550px;
     padding: 10px 5px;
-    box-shadow: 0 0 2px;
+    box-shadow: 0 0 2px green;
     border-radius: 10px;
+    gap: 8px;
 
 }
 .auth .header {
@@ -35,7 +36,7 @@
 }
 
 .auth form h1 {
-    background: linear-gradient(to left, blue, purple);
+    background: linear-gradient(to left, green, purple);
     color: transparent;
     -webkit-background-clip: text; /* For Chrome, Safari, and Opera */
     background-clip: text;
@@ -51,7 +52,7 @@
 .auth form button {
     margin-top: 10px;
     border-bottom: none;
-    background-color: blue;
+    background: linear-gradient(to left, green, purple);
     border-radius: 10px;
     color: white;
     cursor: pointer;

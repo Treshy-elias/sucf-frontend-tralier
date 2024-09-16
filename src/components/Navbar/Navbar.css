@@ -3,13 +3,15 @@ nav {
     padding: 10px;
     box-shadow: 0 0 2px;
     top: 0;
-    z-index: 50; /* Use integer value for z-index */
-    box-sizing: border-box;
-    background: rgba(255, 255, 255, 0.7); /* Semi-transparent background */
+    background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent background */
     backdrop-filter: blur(10px); /* Applies the blur effect */
     -webkit-backdrop-filter: blur(10px); /* For Safari support */
-
+    box-sizing: border-box;
+    z-index: 50; /* Use integer value for z-index */
+    transition: padding-bottom 0.5s ease; /* Smooth transition for padding */
+    
 }
+
 .navigation {
     display: flex;
     justify-content: space-between;
@@ -19,10 +21,13 @@ nav {
 .logo {
     font-size: 30px;
     font-weight: bold;
-    background: linear-gradient(to left, blue, purple);
+    background: linear-gradient(to left, green, purple);
     color: transparent;
     -webkit-background-clip: text; /* For Chrome, Safari, and Opera */
     background-clip: text;
+    display: flex;
+    align-items:center;
+    gap: 4px;
 }
 .bars {
     font-size: 20px;
@@ -31,8 +36,42 @@ nav {
 .ul-list {
     background-color: rgb(238, 232, 232);
     width: 100%;
-
+    position: absolute; /* Changed to absolute for more flexible positioning */
+    top: -1000px; /* Start position off-screen */
+    left: 0;
+    transition: top .5s ease;
+    box-sizing: border-box;
 }
+
+.ul-list.open {
+    
+    top: 100%; /* Move it down to just below the nav */
+}
+/* .ul-inactive {
+    background-color: rgb(238, 232, 232);
+    width: 100%;
+    overflow: hidden;
+    animation: slideUp .1s forwards;
+}
+
+@keyframes slideDown {
+    0% {
+        height: 0;
+    }
+    100% {
+
+        height: 100px;
+    }
+}
+@keyframes slideUp {
+    0% {
+        height: 0px;
+    }
+    100% {
+
+        height: 0;
+    }
+} */
 .ul {
     display: flex;
     flex-direction: column;
@@ -55,4 +94,17 @@ nav {
 }
 .ul a:active {
     background-color: gray;
+}
+.logo {
+    display: flex;
+}
+.logoImg {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.title span {
+    font-size: 15px;
 }
